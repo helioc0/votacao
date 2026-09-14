@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vota | Avaliação de apresentações</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="#" aria-label="Vota, início"><span class="brand-mark">k</span><span>vota</span></a>
+            <button class="manager-link" id="openManager" type="button">Área de gestão <span
+                    aria-hidden="true">→</span></button>
+        </header>
+
+        <section class="vote-card" id="voteView" aria-live="polite">
+            <div class="status-row">
+                <span class="live-dot"></span>
+                <span id="statusText">VOTAÇÃO EM CURSO</span>
+                <span class="timer" id="timer">--:--</span>
+            </div>
+            <div class="vote-content">
+                <p class="eyebrow">DECISÃO DO JÚRI</p>
+                <h1 id="voteQuestion">Aguardando a próxima votação</h1>
+                <p class="helper" id="voteHelper">O gestor ainda não iniciou uma votação.</p>
+                <div class="choices" id="choices">
+                    <button class="choice yes" data-vote="yes" type="button" disabled>
+                        <span class="choice-icon">✓</span><span><strong>Sim</strong></span>
+                    </button>
+                    <button class="choice no" data-vote="no" type="button" disabled>
+                        <span class="choice-icon">×</span><span><strong>Não</strong></span>
+                    </button>
+                </div>
+                <p class="vote-note" id="voteNote">O seu voto é privado.</p>
+            </div>
+            <footer class="vote-footer"><span>Uma decisão de cada vez</span><span class="lock">⌁ Voto seguro</span>
+            </footer>
+        </section>
+
+        <section class="manager-panel hidden" id="managerView">
+            <div class="manager-heading">
+                <div>
+                    <p class="eyebrow">PAINEL DO GESTOR</p>
+                    <h2>Gestão de votações</h2>
+                </div><button class="close-button" id="closeManager" type="button">Fechar ×</button>
+            </div>
+            <div class="dashboard-grid">
+                <form class="new-vote" id="newVoteForm">
+                    <h3>Nova votação</h3>
+                    <label for="subject">Quem será avaliado?</label>
+                    <input id="subject" name="subject" placeholder="Ex.: Grupo 4" maxlength="80" required>
+                    <label for="duration">Duração da votação</label>
+                    <div class="duration-wrap"><input id="duration" name="duration" type="number" value="3" min="1"
+                            max="120" required><span>minutos</span></div>
+                    <button class="primary-button" type="submit">Iniciar votação <span>→</span></button>
+                    <p class="form-note">Ao iniciar uma nova votação, a anterior é encerrada.</p>
+                </form>
+                <section class="active-summary">
+                    <p class="eyebrow">AGORA</p>
+                    <h3 id="activeTitle">Sem votação ativa</h3>
+                    <div class="summary-numbers">
+                        <div><strong id="yesPercent">—</strong><span>aceitação</span></div>
+                        <div><strong id="yesCount">0</strong><span>votos “Sim”</span></div>
+                        <div><strong id="totalCount">0</strong><span>participantes</span></div>
+                    </div>
+                    <div class="bar"><span id="approvalBar"></span></div>
+                    <div class="summary-actions"><button class="secondary-button" id="endVote" type="button"
+                            disabled>Encerrar agora</button><span id="activeTimer">—</span></div>
+                </section>
+            </div>
+            <section class="history-section">
+                <div class="history-title">
+                    <div>
+                        <p class="eyebrow">ARQUIVO</p>
+                        <h3>Votações realizadas</h3>
+                    </div><span id="historyCount">0 registos</span>
+                </div>
+                <div class="history-list" id="historyList">
+                    <p class="empty-history">Ainda não há votações concluídas.</p>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <dialog class="pin-dialog" id="pinDialog">
+        <form method="dialog" id="pinForm"><button class="dialog-close" id="cancelPin" aria-label="Fechar"
+                type="button">×</button><span class="pin-icon">⌁</span>
+            <h2>Área reservada</h2>
+            <p>Introduza o PIN de gestão para continuar.</p><label for="pin">PIN de acesso</label><input id="pin"
+                type="password" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="••••" required>
+            <p class="pin-error hidden" id="pinError">PIN inválido. Tente novamente.</p><button class="primary-button"
+                value="default" type="submit">Entrar</button>
+        </form>
+    </dialog>
+    <script src="script..js"></script>
+</body>
+
+</html>
