@@ -84,7 +84,7 @@ function renderHistory() {
               "pt-PT",
               { dateStyle: "medium", timeStyle: "short" },
             );
-          return `<article class="history-item"><div><strong>${safe(item.subject)} passa?</strong><small class="date">Encerrada em ${date}</small></div><div><strong class="rate">${s.percent}%</strong><small>aceitação</small></div><div><strong>${s.yes}</strong><small>votos “Sim” · ${s.total} total</small></div></article>`;
+          return `<article class="history-item"><div><strong>${safe(item.subject)}</strong><small class="date">Encerrada em ${date}</small></div><div><strong class="rate">${s.percent}%</strong><small>aceitação</small></div><div><strong>${s.yes}</strong><small>votos “Sim” · ${s.total} total</small></div></article>`;
         })
         .join("")
     : '<p class="empty-history">Ainda não há votações concluídas.</p>';
