@@ -1,22 +1,34 @@
-# Vota
+# Vota — GitHub Pages + Supabase
 
-Aplicação para votação de apresentações em tempo real.
+O site pode continuar publicado no GitHub Pages. O Supabase guarda a votação partilhada, os votos e a área protegida de gestão.
 
-## Iniciar
+## Configuração única no Supabase
 
-Com o Node.js instalado, execute na pasta do projeto:
+1. Crie um projeto no [Supabase](https://supabase.com/dashboard).
+2. Em **Authentication > Providers > Anonymous**, ative **Anonymous sign-ins**.
+3. Abra **SQL Editor**, cole e execute o conteúdo de `supabase/schema.sql`.
+4. Instale a CLI do Supabase, inicie sessão e ligue este repositório ao projeto:
 
-```powershell
-node server.js
-```
+   ```powershell
+   npx supabase login
+   npx supabase link --project-ref O_SEU_PROJECT_REF
+   ```
 
-No mesmo computador, abra `http://localhost:3000`. Para participantes na mesma rede Wi-Fi, partilhe `http://IP-DO-COMPUTADOR:3000` (por exemplo, `http://192.168.1.20:3000`).
+5. Defina um PIN privado e publique a função de gestão:
 
-O PIN inicial da área de gestão é `4826`. Antes de publicar, defina um PIN próprio na variável de ambiente `MANAGER_PIN`.
+   ```powershell
+   npx supabase secrets set MANAGER_PIN=UM_PIN_FORTE
+   npx supabase functions deploy manage
+   ```
 
-## Notas de utilização
+6. Em **Settings > API**, copie o Project URL e a chave **publishable** (ou a chave `anon` dos projetos antigos). Cole ambos em `supabase-config.js`.
+7. Envie as alterações para o GitHub. O GitHub Pages passa a utilizar o Supabase automaticamente.
 
-- Os votos, a votação atual e o histórico ficam guardados no ficheiro `votacoes.json` criado pelo servidor.
-- A votação atual é atualizada automaticamente em todos os dispositivos que abriram o link.
-- Cada navegador recebe uma identificação persistente e pode alterar apenas o seu próprio voto enquanto a votação estiver aberta.
-- Para partilhar fora da rede local, publique este projeto num servidor acessível pela internet com HTTPS.
+## Segurança e comportamento
+
+- A chave publishable pode ficar no site público: as regras RLS do Supabase limitam o acesso.
+- O PIN de gestão fica apenas nos secrets da Edge Function, não no GitHub Pages.
+- Cada visitante recebe uma sessão anónima; pode alterar o seu voto até ao fim da votação.
+- A área pública recebe apenas a votação atual e os totais. O histórico e os votos individuais só são consultados pela função de gestão.
+
+Para realmente assegurar “uma pessoa, um voto” entre dispositivos, troque a sessão anónima por login com e-mail, código de estudante ou códigos individuais.
