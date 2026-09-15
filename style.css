@@ -162,18 +162,38 @@ h3 {
 .choice {
     text-align: left;
     padding: 23px;
-    border: 2px solid var(--line);
+    border: 2px solid transparent;
     border-radius: 16px;
     background: white;
     color: var(--ink);
     display: flex;
     align-items: center;
     gap: 15px;
-    transition: transform .15s, border-color .15s, background .15s;
+    transition: transform .15s, border-color .15s, background .15s, box-shadow .15s;
 }
 
 .choice:not(:disabled):hover {
     transform: translateY(-3px);
+}
+
+.choice.yes {
+    background: #eef8f1;
+    border-color: #b9ddc4;
+}
+
+.choice.no {
+    background: #fdf0ef;
+    border-color: #efc7c2;
+}
+
+.choice.yes:not(:disabled):hover {
+    background: #e1f3e6;
+    border-color: #75b68a;
+}
+
+.choice.no:not(:disabled):hover {
+    background: #fae1de;
+    border-color: #d98278;
 }
 
 .choice:disabled {
@@ -217,15 +237,25 @@ h3 {
 }
 
 .choice.yes.selected {
-    border-color: var(--green);
-    background: var(--soft-green);
-    box-shadow: 0 0 0 3px #2d754e20;
+    border-color: #237043;
+    background: #d4eddb;
+    box-shadow: 0 0 0 4px #2d754e24;
 }
 
 .choice.no.selected {
-    border-color: var(--red);
-    background: var(--soft-red);
-    box-shadow: 0 0 0 3px #a4424220;
+    border-color: #b34842;
+    background: #f5d3cf;
+    box-shadow: 0 0 0 4px #a4424224;
+}
+
+.choice.yes.selected .choice-icon {
+    background: #b8e0c4;
+    color: #165832;
+}
+
+.choice.no.selected .choice-icon {
+    background: #ecb9b3;
+    color: #8d2929;
 }
 
 .vote-note {
