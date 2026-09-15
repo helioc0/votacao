@@ -237,25 +237,31 @@ h3 {
 }
 
 .choice.yes.selected {
-    border-color: #237043;
-    background: #d4eddb;
-    box-shadow: 0 0 0 4px #2d754e24;
+    border-color: transparent;
+    background: #3c8d5a;
+    color: white;
+    box-shadow: 0 8px 18px #2d754e35;
 }
 
 .choice.no.selected {
-    border-color: #b34842;
-    background: #f5d3cf;
-    box-shadow: 0 0 0 4px #a4424224;
+    border-color: transparent;
+    background: #c55b54;
+    color: white;
+    box-shadow: 0 8px 18px #a4424235;
 }
 
 .choice.yes.selected .choice-icon {
-    background: #b8e0c4;
-    color: #165832;
+    background: #ffffff2e;
+    color: white;
 }
 
 .choice.no.selected .choice-icon {
-    background: #ecb9b3;
-    color: #8d2929;
+    background: #ffffff2e;
+    color: white;
+}
+
+.choice.selected small {
+    color: #ffffffd9;
 }
 
 .vote-note {
